@@ -196,7 +196,16 @@ public class ReviewBoardController {
 		ReviewBoardTO to = new ReviewBoardTO();
 		to.setReviewId(request.getParameter("reviewId"));
 
+		CommentTO cto = new CommentTO();
+
+		cto.setPcmId(request.getParameter("reviewId"));
+		
 		int flag = rdao.reviewBoardViewDelete(to);
+		
+		// DB에 댓글 데이터가 남아있는 것 방지
+		if(flag == 0) {
+			flag = cdao.review_commentAllDelete(cto);
+		}
 
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("reviewBoard/reviewBoardViewDelete_ok");

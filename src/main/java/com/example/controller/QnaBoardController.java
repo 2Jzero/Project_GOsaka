@@ -198,9 +198,18 @@ public class QnaBoardController {
 
 		QnaBoardTO to = new QnaBoardTO();
 		to.setQnaId(request.getParameter("qnaId"));
+		
+		CommentTO cto = new CommentTO();
+
+		cto.setPcmId(request.getParameter("qnaId"));
 
 		int flag = qdao.qnaBoardViewDelete(to);
 
+		// DB에 댓글 데이터가 남아있는 것 방지
+		if(flag == 0) {
+			flag = cdao.qna_commentAllDelete(cto);
+		}
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("qnaBoard/qnaBoardViewDelete_ok");
 		modelAndView.addObject("flag", flag);

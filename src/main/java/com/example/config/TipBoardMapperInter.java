@@ -25,15 +25,15 @@ public interface TipBoardMapperInter {
 	public ArrayList<MyPageTO> myTipBoardList();
 	
 	/* Tip Board List 검색 + tsubject SearchKey */
-	@Select("select tipId, tsubject, twriter, tdate, thit, ip from tip_board where tsubject like concat('%', #{searchWord}, '%') order by tipId desc")
+	@Select("select tipId, tsubject, twriter, tdate, datediff(now(), tdate) tgap, thit, ip from tip_board where tsubject like concat('%', #{searchWord}, '%') order by tipId desc")
 	public ArrayList<TipBoardTO> subjectSearchList(String searchWord);
 	
 	/* Tip Board List 검색 + twriter SearchKey */
-	@Select("select tipId, tsubject, twriter, tdate, thit, ip from tip_board where twriter like concat('%', #{searchWord}, '%') order by tipId desc")
+	@Select("select tipId, tsubject, twriter, tdate, datediff(now(), tdate) tgap, thit, ip from tip_board where twriter like concat('%', #{searchWord}, '%') order by tipId desc")
 	public ArrayList<TipBoardTO> writerSearchList( String searchWord);
 	
 	/* Tip Board List 검색 + tcontent SearchKey */
-	@Select("select tipId, tsubject, twriter, tdate, thit, ip from tip_board where tcontent like concat('%', #{searchWord}, '%') order by tipId desc")
+	@Select("select tipId, tsubject, twriter, tdate, datediff(now(), tdate) tgap, thit, ip from tip_board where tcontent like concat('%', #{searchWord}, '%') order by tipId desc")
 	public ArrayList<TipBoardTO> contentSearchList(String searchWord);
 	
 	// Tip 게시판 뷰

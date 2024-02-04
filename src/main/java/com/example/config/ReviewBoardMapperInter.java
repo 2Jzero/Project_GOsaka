@@ -24,16 +24,20 @@ public interface ReviewBoardMapperInter {
 	@Select("select reviewId, rvsubject, rvwriter, rvdate, rvhit from review_board")
 	public ArrayList<MyPageTO> myReviewBoardList();
 	
+	/* Review Board List 검색 + category SearchKey */
+	@Select("select reviewId, category, rvsubject, rvwriter, rvdate, datediff(now(), rvdate) rvgap, rvhit, ip from review_board where category like concat('%', #{searchWord}, '%') order by reviewId desc")
+	public ArrayList<ReviewBoardTO> categorySearchList(String searchWord);
+	
 	/* Review Board List 검색 + rvsubject SearchKey */
-	@Select("select reviewId, category, rvsubject, rvwriter, rvdate, rvhit, ip from review_board where rvsubject like concat('%', #{searchWord}, '%') order by reviewId desc")
+	@Select("select reviewId, category, rvsubject, rvwriter, rvdate, datediff(now(), rvdate) rvgap, rvhit, ip from review_board where rvsubject like concat('%', #{searchWord}, '%') order by reviewId desc")
 	public ArrayList<ReviewBoardTO> subjectSearchList(String searchWord);
 	
 	/* Review Board List 검색 + rvwriter SearchKey */
-	@Select("select reviewId, category, rvsubject, rvwriter, rvdate, rvhit, ip from review_board where rvwriter like concat('%', #{searchWord}, '%') order by reviewId desc")
+	@Select("select reviewId, category, rvsubject, rvwriter, rvdate, datediff(now(), rvdate) rvgap, rvhit, ip from review_board where rvwriter like concat('%', #{searchWord}, '%') order by reviewId desc")
 	public ArrayList<ReviewBoardTO> writerSearchList( String searchWord);
 	
 	/* Review Board List 검색 + rvcontent SearchKey */
-	@Select("select reviewId, category, rvsubject, rvwriter, rvdate, rvhit, ip from review_board where rvcontent like concat('%', #{searchWord}, '%') order by reviewId desc")
+	@Select("select reviewId, category, rvsubject, rvwriter, rvdate, datediff(now(), rvdate) rvgap, rvhit, ip from review_board where rvcontent like concat('%', #{searchWord}, '%') order by reviewId desc")
 	public ArrayList<ReviewBoardTO> contentSearchList(String searchWord);
 	
 	// Review 게시판 뷰

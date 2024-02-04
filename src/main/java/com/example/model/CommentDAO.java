@@ -45,6 +45,19 @@ public class CommentDAO {
 
 		return flag;
 	}
+	
+	// tip 게시판 댓글 삭제 로직
+	public int tip_commentAllDelete(CommentTO to) {
+
+		int flag = 1;
+		int result = mapper.tip_commentAllDelete(to);
+
+		if (result != 0) {
+			flag = 0;
+		}
+
+		return flag;
+	}
 
 	// tip 게시판 댓글 수정 로직
 	public int tip_commentModify(CommentTO to) {
@@ -88,6 +101,19 @@ public class CommentDAO {
 
 		return flag;
 	}
+	
+	// Review 게시판 댓글 삭제 로직
+	public int review_commentAllDelete(CommentTO to) {
+
+		int flag = 1;
+		int result = mapper.review_commentAllDelete(to);
+
+		if (result != 0) {
+			flag = 0;
+		}
+
+		return flag;
+	}
 
 	// Review 게시판 댓글 수정 로직
 	public int review_commentModify(CommentTO to) {
@@ -126,6 +152,19 @@ public class CommentDAO {
 		int result = mapper.qna_commentDelete(to);
 
 		if (result == 1) {
+			flag = 0;
+		}
+
+		return flag;
+	}
+	
+	// qna 게시판 댓글 삭제 로직
+	public int qna_commentAllDelete(CommentTO to) {
+
+		int flag = 1;
+		int result = mapper.qna_commentAllDelete(to);
+
+		if (result != 0) {
 			flag = 0;
 		}
 

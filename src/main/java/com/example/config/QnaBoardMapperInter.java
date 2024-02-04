@@ -25,15 +25,15 @@ public interface QnaBoardMapperInter {
 	public ArrayList<MyPageTO> myQnaBoardList();
 	
 	/* QNA Board List 검색 + qsubject SearchKey */
-	@Select("select qnaId, qsubject, qwriter, qdate, qhit, ip from qna_board where qsubject like concat('%', #{searchWord}, '%') order by qnaId desc")
+	@Select("select qnaId, qsubject, qwriter, qdate, datediff(now(), qdate) qgap, qhit, ip from qna_board where qsubject like concat('%', #{searchWord}, '%') order by qnaId desc")
 	public ArrayList<QnaBoardTO> subjectSearchList(String searchWord);
 	
 	/* QNA Board List 검색 + qwriter SearchKey */
-	@Select("select qnaId, qsubject, qwriter, qdate, qhit, ip from qna_board where qwriter like concat('%', #{searchWord}, '%') order by qnaId desc")
+	@Select("select qnaId, qsubject, qwriter, qdate, datediff(now(), qdate) qgap, qhit, ip from qna_board where qwriter like concat('%', #{searchWord}, '%') order by qnaId desc")
 	public ArrayList<QnaBoardTO> writerSearchList( String searchWord);
 	
 	/* QNA Board List 검색 + qcontent SearchKey */
-	@Select("select qnaId, qsubject, qwriter, qdate, qhit, ip from qna_board where qcontent like concat('%', #{searchWord}, '%') order by qnaId desc")
+	@Select("select qnaId, qsubject, qwriter, qdate, datediff(now(), qdate) qgap, qhit, ip from qna_board where qcontent like concat('%', #{searchWord}, '%') order by qnaId desc")
 	public ArrayList<QnaBoardTO> contentSearchList(String searchWord);
 	
 	// QNA 게시판 뷰

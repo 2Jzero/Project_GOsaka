@@ -310,6 +310,7 @@ if (reviewPageList.size() != 0) {
       <span data-filter="identity" style="float: right; display: flex; align-items: center; padding-bottom:20px;">
 	        <form action="/reviewBoardList.do" method="post" name="ofrm" style="display: flex; align-items: center;">
 		        <select name="searchKey" style="height: 25px; font-size:15px;">
+					<option value="category">종류</option>
 					<option value="rvsubject">제목</option>
 					<option value="rvcontent">내용</option>
 					<option value="rvwriter">이름</option>

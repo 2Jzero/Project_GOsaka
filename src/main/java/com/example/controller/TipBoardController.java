@@ -72,7 +72,7 @@ public class TipBoardController {
 		if (imageNames.isEmpty()) {
 			tipTO.setImage("dotonView.jpg");
 		} else {
-			// 이미지 파일명을 ,로 구분하여 하나의 문자열로 저장
+			// 이미지 파일명을 ▒로 구분하여 하나의 문자열로 저장
 			tipTO.setImage(String.join("▒", imageNames));
 		}
 
@@ -144,7 +144,7 @@ public class TipBoardController {
 
 	}
 
-	// Tip 게시판 쓰기 뷰 페이지
+	// Tip 게시판 쓰기 페이지
 	@RequestMapping("/tipBoardWrite.do")
 	public ModelAndView tipBoardWrite(HttpServletRequest request) {
 
@@ -198,8 +198,18 @@ public class TipBoardController {
 
 		TipBoardTO to = new TipBoardTO();
 		to.setTipId(request.getParameter("tipId"));
+		
+		
+		CommentTO cto = new CommentTO();
 
+		cto.setPcmId(request.getParameter("tipId"));
+		
 		int flag = bdao.tipBoardViewDelete(to);
+		
+		// DB에 댓글 데이터가 남아있는 것 방지
+		if(flag == 0) {
+			flag = cdao.tip_commentAllDelete(cto);
+		}
 
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("tipBoard/tipBoardViewDelete_ok");

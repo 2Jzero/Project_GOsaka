@@ -45,7 +45,9 @@ public class ReviewBoardDAO {
 	public ArrayList<ReviewBoardTO> reviewBoardSearchList(String searchKey, String searchWord) {
 		ArrayList<ReviewBoardTO> searchList = new ArrayList<>();
 
-		if (searchKey.equals("rvsubject")) {
+		if (searchKey.equals("category")) {
+			searchList = mapper.categorySearchList(searchWord);
+		} else if (searchKey.equals("rvsubject")) {
 			searchList = mapper.subjectSearchList(searchWord);
 		} else if (searchKey.equals("rvwriter")) {
 			searchList = mapper.writerSearchList(searchWord);

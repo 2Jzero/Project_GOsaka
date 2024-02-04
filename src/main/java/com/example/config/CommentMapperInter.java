@@ -24,6 +24,10 @@ public interface CommentMapperInter {
 	// Tip 게시판 댓글 삭제 로직
 	@Delete("delete from tip_comment where pcmId=#{pcmId} and cmId=#{cmId}")
 	public int tip_commentDelete(CommentTO to);
+	
+	// Tip 게시판 댓글 전체 삭제 로직
+	@Delete("delete from tip_comment where pcmId=#{pcmId}")
+	public int tip_commentAllDelete(CommentTO to);
 
 	// Tip 게시판 댓글 수정 로직
 	@Update("update tip_comment set ccontent=#{ccontent} where pcmId=#{pcmId} and cmId=#{cmId}")
@@ -45,6 +49,10 @@ public interface CommentMapperInter {
 	// Review 게시판 댓글 삭제 로직
 	@Delete("delete from review_comment where pcmId=#{pcmId} and cmId=#{cmId}")
 	public int review_commentDelete(CommentTO to);
+	
+	// Review 게시판 댓글 전체 삭제 로직
+	@Delete("delete from review_comment where pcmId=#{pcmId}")
+	public int review_commentAllDelete(CommentTO to);
 
 	// Review 게시판 댓글 수정 로직
 	@Update("update review_comment set ccontent=#{ccontent} where pcmId=#{pcmId} and cmId=#{cmId}")
@@ -66,6 +74,10 @@ public interface CommentMapperInter {
 	// qna 게시판 댓글 삭제 로직
 	@Delete("delete from qna_comment where pcmId=#{pcmId} and cmId=#{cmId}")
 	public int qna_commentDelete(CommentTO to);
+	
+	// qna 게시판 댓글 전체 삭제 로직
+	@Delete("delete from qna_comment where pcmId=#{pcmId}")
+	public int qna_commentAllDelete(CommentTO to);
 
 	// qna 게시판 댓글 수정 로직
 	@Update("update qna_comment set ccontent=#{ccontent} where pcmId=#{pcmId} and cmId=#{cmId}")
